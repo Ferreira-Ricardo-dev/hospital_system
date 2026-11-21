@@ -31,7 +31,7 @@ class FrameLogin(ctk.CTkFrame):
         self.title = ctk.CTkLabel(
             self.card_login, 
             text="Clínica Bem-Estar - Login de Usuário", 
-            font=("Segoe UI", 28, "bold"), # Ajustado levemente para caber bem no card
+            font=("Segoe UI", 28, "bold"), 
             text_color="#144475"
         )
         self.title.grid(row=0, column=0, padx=40, pady=(35, 25))
@@ -64,7 +64,7 @@ class FrameLogin(ctk.CTkFrame):
         self.entry_senha = ctk.CTkEntry(
             self.card_login,
             placeholder_text="Digite sua senha...",
-            show="*", # Oculta os caracteres da senha
+            show="*", 
             width=350,
             height=40,
             border_width=1
@@ -98,10 +98,9 @@ class FrameLogin(ctk.CTkFrame):
             self.text_feedback.configure(text=mensagem, text_color="#2FA572")
             self.entry_senha.delete(0, "end")
             self.controller.abrir_menu()
-            
+
         else:
             self.text_feedback.configure(text=mensagem, text_color="#FF5555")
-            # Limpa a senha apenas se os campos não estavam vazios
             if usuario_digitado and senha_digitado:
                 self.entry_senha.delete(0, "end")
 
