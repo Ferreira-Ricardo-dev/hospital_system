@@ -218,4 +218,4 @@ class FrameAdmin(ctk.CTkFrame):
         self.atualizar_tabela()
 
     def _voltar_login(self):
-        self.winfo_toplevel().destroy()
+        self.controller.exibir_login()

@@ -1,6 +1,9 @@
 import customtkinter as ctk
 from views.login_view import FrameLogin
 from views.admin_view import FrameAdmin
+from controllers.fila_controller import GerenciadorFila
+from views.atendente_view import FrameAtendente
+from views.painel_tv_view import JanelaPainelTV
 
 ctk.set_appearance_mode("Light") #Defininção do padrão de fundo
 ctk.set_default_color_theme("blue")
@@ -13,6 +16,7 @@ class App(ctk.CTk):
         self.geometry("1050x700")
         self.minsize(width=950, height=600)
         self.resizable(width=True, height=True)
+        self.fila_atendimento = GerenciadorFila()
 
         #Configurando linhas e colunas
         self.grid_rowconfigure(0, weight=1)
@@ -49,12 +53,12 @@ class App(ctk.CTk):
 
         elif cargo == "Atendente":
             self.title(f"Clínica Bem-Estar - Recepção & Chamada ({nome})")
-            self._exibir_placeholder_atendente(nome)
+            self._trocar_tela(FrameAtendente(parent=self, controller=self))
 
     def abrir_painel_tv(self):
         """Abre a tela pública de exibição de senhas em uma janela separada (CTkToplevel)."""
         if self.janela_tv is None or not self.janela_tv.winfo_exists():
-            pass
+            self.janela_tv = JanelaPainelTV(parent=self, controller=self)
         else:
             self.janela_tv.focus()
 
