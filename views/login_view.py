@@ -1,3 +1,4 @@
+from controllers.autenticacao import User
 import customtkinter as ctk
 
 #Defininção do padrão de fundo
@@ -9,6 +10,7 @@ class FrameLogin(ctk.CTkFrame):
         super().__init__(parent)
 
         self.controller = controller
+        self.validador = User()
 
         #Configuração do grid
         self.grid_rowconfigure(0, weight=1)
@@ -72,8 +74,34 @@ class FrameLogin(ctk.CTkFrame):
         self.button_entrar = ctk.CTkButton(
             self.card_login,
             text="Entrar",
+            command=self.click_save,
             width=350,
             height=45,
             font=("Arial", 14, "bold")
         )
         self.button_entrar.grid(row=5, column=0, padx=40, pady=(25, 35), sticky="ew")
+
+        self.text_feedback = ctk.CTkLabel(
+            self.card_login, 
+            text="", 
+            font=("Arial", 12), 
+            wraplength=260 ) 
+        self.text_feedback.grid(row=6, column=0, padx=20, pady=(5, 20))
+
+    def click_save(self):
+        usuario_digitado = self.entry_usuario.get().strip()
+        senha_digitado = self.entry_senha.get().strip()
+
+        sucesso, mensagem = self.validador.validar_credenciais(usuario_digitado, senha_digitado)
+
+        if sucesso:
+            self.text_feedback.configure(text=mensagem, text_color="#2FA572")
+            self.entry_senha.delete(0, "end")
+            self.controller.abrir_menu()
+            
+        else:
+            self.text_feedback.configure(text=mensagem, text_color="#FF5555")
+            # Limpa a senha apenas se os campos não estavam vazios
+            if usuario_digitado and senha_digitado:
+                self.entry_senha.delete(0, "end")
+

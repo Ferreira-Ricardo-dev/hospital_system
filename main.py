@@ -21,6 +21,12 @@ class App(ctk.CTk):
         self.painel_login = FrameLogin(parent=self, controller=self)
         self.painel_login.grid(row=0, column=0, sticky="nsew")
 
+    def abrir_menu(self):
+        self.painel_login.grid_forget()
+
+        self.painel_admin = FrameAdmin(parent=self, controller=self)
+        self.painel_admin.grid(row=0, column=0, sticky="nsew")
+
 
 if __name__ == "__main__":
     app = App()
