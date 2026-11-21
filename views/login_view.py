@@ -92,12 +92,12 @@ class FrameLogin(ctk.CTkFrame):
         usuario_digitado = self.entry_usuario.get().strip()
         senha_digitado = self.entry_senha.get().strip()
 
-        sucesso, mensagem = self.validador.validar_credenciais(usuario_digitado, senha_digitado)
+        sucesso, mensagem, usuario_logado = self.validador.validar_credenciais(usuario_digitado, senha_digitado)
 
         if sucesso:
             self.text_feedback.configure(text=mensagem, text_color="#2FA572")
             self.entry_senha.delete(0, "end")
-            self.controller.abrir_menu()
+            self.controller.abrir_menu(usuario_logado)
 
         else:
             self.text_feedback.configure(text=mensagem, text_color="#FF5555")
