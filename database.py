@@ -1,10 +1,15 @@
 import json
 import sqlite3
+import sys
 from pathlib import Path
 
+if getattr(sys, "frozen", False):
+    DIRETORIO_BASE = Path(sys.executable).resolve().parent
+else:
+    DIRETORIO_BASE = Path(__file__).resolve().parent
 
-CAMINHO_BANCO = Path(__file__).with_name("hospital_system.db")
-CAMINHO_USUARIOS = Path(__file__).with_name("usuarios.json")
+CAMINHO_BANCO = DIRETORIO_BASE / "hospital_system.db"
+CAMINHO_USUARIOS = DIRETORIO_BASE / "usuarios.json"
 
 
 def inicializar_banco():
