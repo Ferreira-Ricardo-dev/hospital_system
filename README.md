@@ -11,6 +11,8 @@ Aplicação desktop para gerenciamento de usuários, triagem e filas de atendime
 - Triagem de pacientes por especialidade e nível de prioridade.
 - Geração de senhas e chamada do próximo paciente da fila.
 - Painel separado para exibir as chamadas.
+- Painel com categoria da última chamada, quantidade e relação de senhas em espera.
+- Estimativa de espera na lista do atendente: 30 minutos por paciente à frente na fila da mesma especialidade, considerando a ordem de prioridade atual.
 - Persistência de usuários, filas e chamadas em banco SQLite.
 
 ---
