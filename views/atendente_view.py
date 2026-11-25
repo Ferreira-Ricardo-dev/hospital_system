@@ -206,6 +206,8 @@ class FrameAtendente(ctk.CTkFrame):
             self.entry_idade.delete(0, "end")
             self.combo_prioridade.set("Normal")
             self.atualizar_lista_fila()
+            if self.controller.janela_tv is not None and self.controller.janela_tv.winfo_exists():
+                self.controller.janela_tv.atualizar_painel()
         else:
             self.label_feedback.configure(text=msg, text_color="#DC2626")
 
@@ -267,6 +269,11 @@ class FrameAtendente(ctk.CTkFrame):
                 font=("Segoe UI", 12),
                 text_color="#1E293B"
             ).grid(row=0, column=1, padx=5, pady=10, sticky="w")
+
+            ctk.CTkLabel(
+                item, text=f"Espera estimada: {(pos - 1) * 30} min",
+                font=("Segoe UI", 11), text_color="#64748B"
+            ).grid(row=1, column=1, padx=5, pady=(0, 8), sticky="w")
 
             badge = ctk.CTkLabel(
                 item,
